@@ -3,6 +3,10 @@
 - `How to make a minimum reproducible example? (https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)`
 - For questions that are not [on-topic](http://stackoverflow.com/help/on-topic), you might want to try in the [R-Public chatroom](http://chat.stackoverflow.com/rooms/25312/r-public).
 
+# Apache Spark related questions
+
+- `[How to make good reproducible Apache Spark Dataframe examples](https://stackoverflow.com/questions/48427185/how-to-make-good-reproducible-apache-spark-dataframe-examples/48428198#48428198)`
+
 # SQL related questions
 
 - `rename column `SQL Server 2008` (https://stackoverflow.com/questions/16296622/rename-column-sql-server-2008)`
