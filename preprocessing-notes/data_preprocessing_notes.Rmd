@@ -1,0 +1,61 @@
+---
+title: "data preprocessing notes"
+output: html_notebook
+---
+Objective: A curated list of handy `base R` functions for data preprocessing tasks. This list can be used for interview questions and answers.
+
+```{r}
+data("airquality")
+
+# check data dimensions
+dim(airquality)
+
+# check missing values
+colSums(is.na(airquality))
+```
+Let's look at the data structure
+```{r}
+str(airquality)
+```
+
+The variables `Ozone` and `Solar.R` contain missing values. Both of them are continuous in nature. So to impute the missing data, we can use the `median`.
+```{r}
+for(i in 1:ncol(airquality)){
+  airquality[is.na(airquality[,i]), i] <- median(airquality[,i], na.rm = TRUE)
+}
+```
+Check for missing values again.
+```{r}
+colSums(is.na(airquality))
+```
+**Divide the data into training and testing/validation set**
+```{r}
+## 75% will be training data, rest be test data
+smp_size <- floor(0.75 * nrow(airquality))
+
+## set the seed to make your partition reproducible
+set.seed(2018)
+train_ind <- sample(seq_len(nrow(airquality)), size = smp_size)
+
+train_data <- airquality[train_ind, ]
+test_data <- airquality[-train_ind, ]
+dim(train_data)
+dim(test_data)
+```
+
+** A classification task**: Let's apply a machine learning technique like regression. Note the base R function, `lm()` can both be used as a regression tool and feature selection tool.
+```{r}
+# assume we want to build model over day
+linear_model<- lm(Day ~., data = train_data)
+print(linear_model)
+```
+*** Linear Regression Diagnostics***
+```{r}
+summary(linear_model)
+```
+The `summary()` generates a lot of information. For now, our concern is `feature selection`. The number of stars besides a given variable indicate its importance. So we can see, the variable `Solar.R` is the only significant variable to accurately predict `Day`.
+Let's try another variab;e like `Month` to predict.
+```{r}
+linear_model<- lm(Month~., data = airquality)
+summary(linear_model)
+```
