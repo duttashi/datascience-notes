@@ -1,0 +1,31 @@
+---
+title: "data preprocessing notes"
+output: html_notebook
+---
+Objective: A curated list of handy `base R` functions for data preprocessing tasks. This list can be used for interview questions and answers.
+
+```{r}
+data("airquality")
+
+# check data dimensions
+dim(airquality)
+
+# check missing values
+colSums(is.na(airquality))
+```
+Let's look at the data structure
+```{r}
+str(airquality)
+```
+
+The variables `Ozone` and `Solar.R` contain missing values. Both of them are continuous in nature. So to impute the missing data, we can use the `median`.
+```{r}
+for(i in 1:ncol(airquality)){
+  airquality[is.na(airquality[,i]), i] <- median(airquality[,i], na.rm = TRUE)
+}
+```
+Check for missing values again.
+```{r}
+colSums(is.na(airquality))
+```
+
