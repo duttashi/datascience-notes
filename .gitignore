@@ -1,2 +1,3 @@
 *.ipynb_checkpoints
 /preprocessing-notes/.ipynb_checkpoints/
+.Rproj.user
