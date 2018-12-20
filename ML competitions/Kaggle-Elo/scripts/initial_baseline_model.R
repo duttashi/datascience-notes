@@ -21,13 +21,18 @@ library(ggplot2)
 library(Matrix)
 
 # read all data files
-train<- read_csv("ELO/data/train.csv")
-test<- read_csv("ELO/data/test.csv")
-histdata<- read_csv("ELO/data/historical_transactions.csv")
-newdata<- read_csv("ELO/data/new_merchant_transactions.csv")
-merchants<-read_csv("ELO/data/merchants.csv")
-sample<- read_csv("ELO/data/sample_submission.csv")
+scriptPath<- getwd()
+dataPath<- c("ML competitions/Kaggle-ELO/data/")
+setwd(dataPath)
+train<- read_csv("train.csv")
+test<- read_csv("test.csv")
+histdata<- read_csv("historical_transactions.csv")
+newdata<- read_csv("new_merchant_transactions.csv")
+merchants<-read_csv("merchants.csv")
+sample<- read_csv("sample_submission.csv")
 
+# change working directory to scripts folder
+setwd(scriptPath)
 # EDA
 dim(train)
 dim(test)
