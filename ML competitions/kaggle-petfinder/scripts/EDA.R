@@ -78,7 +78,7 @@ train.n<- train[,c(1:2,4:15,18:19,21:22,3,16:17,20,23:24)]
 str(train.n)
 
 # cols to drop
-dropCols<- c(2,16:18)
+dropCols<- c(2,16:17)
 train.n<- train.n[,-dropCols]
 str(train.n)
 
